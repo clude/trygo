@@ -1,0 +1,12 @@
+{{% template "base/base.html" . %}}
+
+{{% define "content" %}}
+<h2>Test OO VV</h2>
+<p> HaHahaOO </p>
+<ul>
+    {{% range .Messages %}}
+    <li> {{% . %}} </li>
+    {{% end %}}
+</ul>
+{{% end %}}
+
