@@ -1,0 +1,36 @@
+<div ng-controller="DeUpdaterCtrl">
+    <h3>Updater显示/点击查询</h3>
+
+    <div>
+        <form class="form-inline">
+
+            <div class="form-group">
+                <span class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyyMMdd" is-open="vm.isDateOpen" ng-model="vm.dt" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.isDateOpen = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.param.id" placeholder="Solution Id">
+            </div>
+
+            <button type="button" class="btn btn-default" ng-click="fn.getRecord()">查询</button>
+        </form>
+        <div>
+            <table class="table ng-cloak" ng-if="!isEmpty(vm.results)">
+                <tr><th>投放Id</th><th>显示数</th><th>点击数</th></tr>
+                <tr>
+                    <td>{{vm.param.id}}</td>
+                    <td>{{vm.results.show}}</td>
+                    <td>{{vm.results.click}}</td>
+                </tr>
+            </table>
+
+            <pre ng-if="isEmpty(vm.results)">未获取数据...</pre>
+        </div>
+    </div>
+
+</div>

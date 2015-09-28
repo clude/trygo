@@ -1,0 +1,11 @@
+{{% template "base/base.html" . %}}
+
+{{% define "headers" %}}
+<script src='/static/assets/js/app/dm/controller.js'></script>
+<script src='/static/assets/js/app/ad/controller.js'></script>
+{{% end %}}
+
+{{% define "content" %}}
+<div ng-include="'/static/tpl/dm/main.html'"></div>
+{{% end %}}
+

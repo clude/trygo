@@ -1,0 +1,12 @@
+<div ng-controller="AdsCtrl">
+
+    <h3>提交创意代码 <input type="button" class="btn btn-default" value="提交预览" ng-click="fn.postCreative()" /></h3>
+    <textarea size="100" ng-model="vm.creative" style="width: 600px; height: 120px" placeholder="输入创意代码"></textarea>
+
+
+    <h3>效果展示 <input type="button" class="btn btn-default" value="刷新" ng-click="fn.reloadFrame()" /></h3>
+    <div style="border: 2px dotted skyblue; width: 90%; height: 300px; padding: 10px; overflow: auto;">
+        <iframe ng-src="{{vm.frameSrc}}" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+<div ng-controller="ServersCtrl">
+    <h3>服务器状态</h3>
+    <!--<input type="button" class="btn btn-default" value="刷新" ng-click="fn.getServerStatus()" />-->
+
+
+    <table class="table table-hover table-condensed ng-cloak" ng-if="!isEmpty(vm.servers)" >
+        <tr><th>服务器IP</th><th>状态</th><th>检查时间</th></tr>
+        <tr ng-repeat="(ip, status) in vm.servers">
+            <td>{{ip}}</td>
+            <td>在线</td>
+            <td>{{status.ts * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+        </tr>
+    </table>
+
+    <pre ng-if="isEmpty(vm.servers)">未获取服务器状态...</pre>
+</div>

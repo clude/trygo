@@ -1,0 +1,51 @@
+<div ng-controller="FrequencyCtrl" ng-cloak>
+    <h3>频次/重定向查询</h3>
+
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" class="form-control input-long" ng-model="vm.param.cookie" placeholder="cookie">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.param.sid" placeholder="Solution Id">
+                or
+                <input type="text" class="form-control" ng-model="vm.param.cid" placeholder="Campaign Id" >
+                <span ng-if="gvm.tabs.de.active">or</span>
+                <input type="text" class="form-control" ng-model="vm.param.oid" placeholder="Order Id" ng-if="gvm.tabs.de.active">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="fn.getAll()">查询</button>
+
+        </form>
+        <div>
+            <table ng-repeat="type in vm.types" class="table ng-cloak" ng-if="!isEmpty(vm.results[type.key])">
+                <tr><th>{{type.name}}</th><th>总数</th><th>频次(月)</th><th>频次(周)</th><th>频次(日)</th></tr>
+                <tr>
+                    <td>{{vm.results.s.id}}</td>
+                    <td>{{vm.results.s.total}}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="(k, v) in vm.results[type.key].mon">{{k}}: {{v}}</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="(k, v) in vm.results[type.key].week">{{k}}: {{v}}</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="(k, v) in vm.results[type.key].day">{{k}}: {{v}}</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <h4 ng-if="!isEmpty(vm.results.tag)">用户重定向标签</h4>
+            <pre ng-if="!isEmpty(vm.results.tag)">{{vm.results.tag}}</pre>
+
+
+            <pre ng-if="isEmpty(vm.results.tag) && isEmpty(vm.results.s) && isEmpty(vm.results.c) && isEmpty(vm.results.o)">未获取数据...</pre>
+        </div>
+    </div>
+
+</div>

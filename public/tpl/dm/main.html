@@ -1,0 +1,30 @@
+<div class="dm-dashboard row ng-cloak" ng-controller="DmMainCtrl">
+    <div class="col-md-2">
+        <tabset vertical="true" type="pills">
+            <tab heading="Ads Testing" select="gfn.RedirectTo('/ads')" active="gvm.tabs.ads.active"></tab>
+            <tab heading="Dashboard-DE" select="gfn.RedirectTo('/de')" active="gvm.tabs.de.active"></tab>
+            <tab heading="Dashboard-DSP" select="gfn.RedirectTo('/dsp')" active="gvm.tabs.dsp.active"></tab>
+        </tabset>
+    </div>
+
+    <div class="col-md-9" ng-if="!gvm.isUnloaded">
+        <div ng-if="!gvm.tabs.ads.active">
+            <div ng-include="'/static/tpl/dm/servers.html?tm=1'" class="data-panel"></div>
+
+            <div ng-if="gvm.tabs.de.active" ng-include="'/static/tpl/dm/de_updater.html?tm=1'" class="data-panel"></div>
+
+            <div ng-if="gvm.tabs.dsp.active" ng-include="'/static/tpl/dm/dsp_updater.html?tm=1'" class="data-panel"></div>
+
+            <div ng-include="'/static/tpl/dm/de_frequency.html?tm=1'" class="data-panel"></div>
+
+            <div ng-include="'/static/tpl/dm/de_record.html?tm=1'" class="data-panel"></div>
+        </div>
+
+        <div ng-if="gvm.tabs.ads.active">
+            <div ng-include="'/static/tpl/ad/ads_test.html?tm=1'" class="data-panel"></div>
+        </div>
+
+
+    </div>
+</div>
+

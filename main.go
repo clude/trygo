@@ -15,6 +15,7 @@ import (
 	"github.com/gin-gonic/contrib/sessions"
 	"cludezhu/trygo/controller/dm"
 
+	"cludezhu/trygo/conf"
 )
 
 var templateDelims = []string{"{{%", "%}}"}
@@ -61,6 +62,9 @@ func initBak() {
 }
 
 func main() {
+
+
+
 	fmt.Println("Booting up the server....")
 	gin.SetMode("release")
 	r := gin.Default()
@@ -76,7 +80,10 @@ func main() {
 	routes.SetRouters(r)
 
 	// connect to as for global using
-	dm.ConnectAS()
+	setting := new(conf.Config)
+	setting.LoadFromJson("./conf.json")
+
+	dm.ConnectAS(setting.Aerospike.Host, setting.Aerospike.Port)
 
 	r.Run(":8000")
 }

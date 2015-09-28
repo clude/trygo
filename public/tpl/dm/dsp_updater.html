@@ -1,0 +1,47 @@
+<div ng-controller="DspUpdaterCtrl" class="ng-cloak">
+    <h3>Updater显示/点击查询</h3>
+
+    <div>
+        <form class="form-inline">
+            <div class="form-group">
+                <span class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyyMMdd" is-open="vm.isDateOpen" ng-model="vm.dt" close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.isDateOpen = true"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </span>
+            </div>
+            <div class="form-group"></div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="vm.param.sid" placeholder="Solution Id">
+                or
+                <input type="text" class="form-control" ng-model="vm.param.cid" placeholder="Campaign Id">
+                or
+                <input type="text" class="form-control" ng-model="vm.param.aid" placeholder="Advertiser Id">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="fn.getAll()">查询</button>
+        </form>
+        <div class="row">
+            <div class="col-md-4" ng-repeat="type in vm.types"  ng-if="!isEmpty(vm.results[type.key].day)">
+                <h4>{{type.name}}</h4>
+                <div class="row div-pre">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li ng-repeat="(k, v) in vm.results[type.key].day">{{k}}:{{v}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li ng-repeat="(k, v) in vm.results[type.key].global">{{k}}:{{v}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <pre ng-if="isEmpty(vm.results.s.day) && isEmpty(vm.results.c.day) && isEmpty(vm.results.a.day)">未获取数据...</pre>
+    </div>
+
+</div>

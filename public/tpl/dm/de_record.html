@@ -1,0 +1,19 @@
+<div ng-controller="RecordCtrl" class=" ng-cloak">
+    <h3>Aerospike主键自助查询</h3>
+
+    <form class="form-inline">
+        <!--<div class="form-group">-->
+            <!--<input type="text" class="form-control" ng-model="vm.param.namespace" placeholder="Name Space">-->
+        <!--</div>-->
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="vm.param.set" placeholder="Set">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="vm.param.key" placeholder="Key">
+        </div>
+        <button type="button" class="btn btn-default" ng-click="fn.getRecord()">查询</button>
+    </form>
+    <div>
+        <pre>{{vm.results || '未获取数据...'}}</pre>
+    </div>
+</div>
