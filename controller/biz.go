@@ -21,6 +21,7 @@ type User struct {
 func init(){
 	gob.Register(User{})
 	gob.Register(gin.H{})
+	gob.Register(map[interface{}]interface{}{})
 }
 
 func TestSessionUser(c *gin.Context) {

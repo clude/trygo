@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./routes"
-	"./libs/ginext"
+	"cludezhu/trygo/routes"
+	"cludezhu/trygo/libs/ginext"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"html/template"
@@ -13,6 +13,7 @@ import (
 //	"time"
 //	"github.com/unrolled/render"
 	"github.com/gin-gonic/contrib/sessions"
+	"cludezhu/trygo/controller/dm"
 
 )
 
@@ -61,16 +62,22 @@ func initBak() {
 
 func main() {
 	fmt.Println("Booting up the server....")
-//	gin.SetMode("release")
+	gin.SetMode("release")
 	r := gin.Default()
 
 	r.Static("/static", "./public")
 
-	store, _ := sessions.NewRedisStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+//	store, _ := sessions.NewRedisStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+//	r.Use(sessions.Sessions("__usid", store))
+	store := sessions.NewCookieStore([]byte("secret"))
 	r.Use(sessions.Sessions("__usid", store))
 
 	ginext.LoadTemplates(r, "tpl")
 	routes.SetRouters(r)
+
+	// connect to as for global using
+	dm.ConnectAS()
+
 	r.Run(":8000")
 }
 
